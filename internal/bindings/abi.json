@@ -1,0 +1,171 @@
+[
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "beaconRootsAddress_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "beaconRootsAddress",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "highestFinalizedEpoch",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "highestFinalizedTimestamp",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "proveCheckpointFinalized",
+      "inputs": [
+        {
+          "name": "timestamp",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "proof",
+          "type": "tuple",
+          "internalType": "struct IMerkleProofVerifier.ProofInputs",
+          "components": [
+            {
+              "name": "index",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "branch",
+              "type": "bytes32[]",
+              "internalType": "bytes32[]"
+            },
+            {
+              "name": "value",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "verifyProof",
+      "inputs": [
+        {
+          "name": "root",
+          "type": "bytes32",
+          "internalType": "IMerkleProofVerifier.MerkleRoot"
+        },
+        {
+          "name": "proof",
+          "type": "tuple",
+          "internalType": "struct IMerkleProofVerifier.ProofInputs",
+          "components": [
+            {
+              "name": "index",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "branch",
+              "type": "bytes32[]",
+              "internalType": "bytes32[]"
+            },
+            {
+              "name": "value",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "pure"
+    },
+    {
+      "type": "event",
+      "name": "FinalizedCheckpointUpdated",
+      "inputs": [
+        {
+          "name": "epoch",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "timestamp",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "AlreadyFinalized",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "BeaconRootsCallFailed",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "BranchHasExtraItems",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "BranchIsMissingItems",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidProof",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "RootMismatch",
+      "inputs": []
+    }
+]

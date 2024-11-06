@@ -17,7 +17,6 @@ func TestGenerateCheckpointProof_ValidBlockValidState_VerifiesCorrectly(t *testi
 	beaconBlockPath := filepath.Join("testdata", "slot282_beaconblock_valid.json")
 	beaconStatePath := filepath.Join("testdata", "slot282_beaconstate_valid.json")
 
-
 	beaconBlock := getBeaconBlockFromPath(t, beaconBlockPath)
 	require.Equal(t, uint64(282), beaconBlock.Slot)
 	beaconState := getBeaconStateFromPath(t, beaconStatePath)
@@ -36,6 +35,7 @@ func TestGenerateCheckpointProof_ValidBlockValidState_VerifiesCorrectly(t *testi
 	proofInputs, err := GenerateCheckpointProof(ctx, beaconBlockWithState)
 	require.NoError(t, err)
 	err = VerifyCheckpointProof(ctx, proofInputs)
+	require.NoError(t, err)
 
 	// -- Assert
 	tree, err := beaconBlock.GetTree()
@@ -50,7 +50,6 @@ func TestGenerateCheckpointProof_ValidBlockInvalidState_FailsVerification(t *tes
 	// blob gas used was change 0 -> 1 to simulate invalid body to header
 	beaconStatePath := filepath.Join("testdata", "slot282_beaconstate_invalid.json")
 
-
 	beaconBlock := getBeaconBlockFromPath(t, beaconBlockPath)
 	require.Equal(t, uint64(282), beaconBlock.Slot)
 	beaconState := getBeaconStateFromPath(t, beaconStatePath)
@@ -69,6 +68,7 @@ func TestGenerateCheckpointProof_ValidBlockInvalidState_FailsVerification(t *tes
 	proofInputs, err := GenerateCheckpointProof(ctx, beaconBlockWithState)
 	require.NoError(t, err)
 	err = VerifyCheckpointProof(ctx, proofInputs)
+	require.NoError(t, err)
 
 	// -- Assert
 	tree, err := beaconBlock.GetTree()

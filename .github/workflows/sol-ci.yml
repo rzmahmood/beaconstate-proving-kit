@@ -1,4 +1,4 @@
-name: CI
+name: Foundry CI
 
 on:
   push:
@@ -7,6 +7,10 @@ on:
 
 env:
   FOUNDRY_PROFILE: ci
+
+defaults:
+  run:
+    working-directory: smartcontracts
 
 jobs:
   check:
