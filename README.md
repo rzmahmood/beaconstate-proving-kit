@@ -53,6 +53,7 @@ forge script script/DeployerFCT.s.sol:DeployFinalizedCheckpointTracker --fork-ur
 
 6. Run the checkpoint tracker proof generation and submission. Replace $CHECKPOINT_TRACKER_ADDRESS with the address from the forge script deployment. Use CLI help tools to replace defaults in fields if not using local testnet.
 ```bash
+cd ..
 ./proof-generator --checkpoint-tracker-address $CHECKPOINT_TRACKER_ADDRESS --slot 200
 ```
 
