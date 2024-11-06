@@ -18,23 +18,26 @@ git clone https://github.com/rzmahmood/eip4788-proof-generator.git
 cd eip4788-proof-generator
 ```
 
-2. Build the Application:
-```bash
-go build -o proof-generator ./cmd/proof-generator
-```
-
-3. Run unit tests against fixed data in `internal/checkpointproofs/testdata`
+2. Run unit tests against fixed data in `internal/checkpointproofs/testdata`
 ```bash
 go test ./...
 ```
 
-5. Run a Local PoS Network to End to End test against
-See my local testnet setup which now supports EIP4788! https://github.com/rzmahmood/ethereum-pos-testnet . You will need to wait a few minutes under the first block is finalized.
-You can query the chain's finalized checkpoint via, which will eventually return a non-zero epoch:
+3. Build the Application:
 ```bash
-curl http://127.0.0.1:4100/eth/v2/debug/beacon/states/head | jq .data.finalized_checkpoint`
+go build -o proof-generator ./cmd/proof-generator
 ```
+
+4. Run a Local PoS Network to End to End test against
+See my local testnet setup which now supports EIP4788! https://github.com/rzmahmood/ethereum-pos-testnet . You will need to wait a few minutes under the first block is finalized.
+You can query the chain's finalized checkpoint via, which will eventually return a non-zero epoch `curl http://127.0.0.1:4100/eth/v2/debug/beacon/states/head | jq .data.finalized_checkpoint`
 Alternatively run a Sepolia Beacon Node as RPC providers do not serve Debug APIs which is required. A script I used with local reth/lighthouse binaries can be found [here](https://github.com/rzmahmood/ethereum-pos-testnet/blob/test-environment/sepolia.sh)
+
+
+5. A verification smart contract to the network. For the local `ethereum-pos-testnet`, this can be done using the following:
+```
+forge script
+```
 
 ## Future Work and Limitations
 - WARNING: This will only work on Deneb blocks.
