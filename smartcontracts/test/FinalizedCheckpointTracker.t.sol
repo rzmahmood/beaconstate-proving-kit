@@ -11,8 +11,7 @@ contract FinalizedCheckpointTrackerTest is Test, IMerkleProofVerifier {
     address constant beaconRootsContract = 0x000F3df6D732807Ef1319fB7B8bB8522d0Beac02;
 
     function setUp() public {
-        // 2 is the leaf index we expect
-        fct = new FinalizedCheckpointTracker(beaconRootsContract, 2);
+        fct = new FinalizedCheckpointTracker(beaconRootsContract);
     }
 
     function test_finalizedCheckpointValid_success() public {
