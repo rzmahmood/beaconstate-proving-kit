@@ -17,7 +17,7 @@ contract DeployFinalizedCheckpointTracker is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         // TODO: manage the generalized index better
-        fct = new FinalizedCheckpointTracker(beaconRootsContract, 740);
+        fct = new FinalizedCheckpointTracker(beaconRootsContract, 744);
 
         console.log(address(fct));
         vm.stopBroadcast();

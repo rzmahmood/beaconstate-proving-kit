@@ -53,6 +53,9 @@ func generateCheckpointProofInputs(ctx context.Context, beaconBlock *consensus.B
 	// Generate the Leaf Value Input and store in leafValue
 	finalizedEpochLeaf := make([]byte, 32)
 	finalizedEpoch := beaconBlock.BeaconState.FinalizedCheckpoint.Epoch
+	if finalizedEpoch == 0 {
+		return nil, errors.New("cannot prove as no epochs have been finalized at this slot")
+	}
 	binary.LittleEndian.PutUint64(finalizedEpochLeaf, finalizedEpoch)
 	var leafValue merkle.Value
 	copy(leafValue[:], finalizedEpochLeaf)
