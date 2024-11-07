@@ -35,7 +35,7 @@ go build -o proof-generator ./cmd/proof-generator
 4. Run a Local PoS Network to e2e test against
 See my local testnet setup which now supports EIP4788! https://github.com/rzmahmood/ethereum-pos-testnet . You will need to wait a few minutes until the first block is finalized. I normally see it by epoch 5 / block 160.
 You can query the chain's finalized checkpoint via the following query which will eventually return a non-zero epoch: `curl http://127.0.0.1:4100/eth/v2/debug/beacon/states/head | jq .data.finalized_checkpoint`
-Alternatively run a Sepolia Beacon Node as RPC providers do not serve Debug APIs which is required. A script I used with local reth/lighthouse binaries can be found [here](https://github.com/rzmahmood/ethereum-pos-testnet/blob/test-environment/sepolia.sh)
+Alternatively run a Sepolia Beacon Node as RPC providers do not serve Debug APIs which is required. A script I used with local reth/lighthouse binaries can be found [here](https://github.com/rzmahmood/ethereum-pos-testnet/blob/test-environment/sepolia.sh). (Warning Sepolia testing will require you to change the forge deployment scripts and is unsupported by the README)
 
 
 5. Deploy a verification smart contract to the network. For the local `ethereum-pos-testnet`, this can be done using the following.
