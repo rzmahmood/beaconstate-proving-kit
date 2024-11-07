@@ -16,7 +16,8 @@ contract DeployFinalizedCheckpointTracker is Script {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
 
-        fct = new FinalizedCheckpointTracker(beaconRootsContract);
+        // TODO: manage the generalized index better
+        fct = new FinalizedCheckpointTracker(beaconRootsContract, 744);
 
         console.log(address(fct));
         vm.stopBroadcast();

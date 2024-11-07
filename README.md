@@ -51,7 +51,15 @@ export RPC=http://localhost:8000
 forge script script/DeployerFCT.s.sol:DeployFinalizedCheckpointTracker --fork-url $RPC --broadcast -vvvv
 ```
 
-6. Run the checkpoint tracker proof generation and submission. Replace $CHECKPOINT_TRACKER_ADDRESS with the address from the forge script deployment. Use CLI help tools to replace defaults in fields if not using local testnet.
+Copy the address from the output and save it in `CHECKPOINT_TRACKER_ADDRESS`. Example below
+```bash
+  [369311] → new FinalizedCheckpointTracker@0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+    └─ ← [Return] 1843 bytes of code
+
+export CHECKPOINT_TRACKER_ADDRESS=0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+```
+
+6. Run the checkpoint tracker proof generation and submission. Use CLI help tools to replace defaults in fields if not using local testnet.
 ```bash
 cd ..
 ./proof-generator --checkpoint-tracker-address $CHECKPOINT_TRACKER_ADDRESS --slot 200
