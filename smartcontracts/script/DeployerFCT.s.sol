@@ -16,7 +16,10 @@ contract DeployFinalizedCheckpointTracker is Script {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
 
-        fct = new FinalizedCheckpointTracker(beaconRootsContract);
+        // 744 is the leaf index of the epoch value for the finalize checkpoint
+        uint256 expectedLeafIndex = 744;
+
+        fct = new FinalizedCheckpointTracker(beaconRootsContract, expectedLeafIndex);
 
         console.log(address(fct));
         vm.stopBroadcast();

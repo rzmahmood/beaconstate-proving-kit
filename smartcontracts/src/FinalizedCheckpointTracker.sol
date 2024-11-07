@@ -13,21 +13,24 @@ import "./IFinalizedCheckpointTracker.sol";
 contract FinalizedCheckpointTracker is MerkleProofVerifier, IFinalizedCheckpointTracker {
     using SSZHelper for bytes32;
 
-    /// @inheritdoc IFinalizedCheckpointTracker
-    address public immutable override beaconRootsAddress;
+    address public immutable beaconRootsAddress;
 
-    /// @inheritdoc IFinalizedCheckpointTracker
-    uint256 public override highestFinalizedEpoch;
+    uint256 public immutable expectedLeafIndex;
 
-    /// @inheritdoc IFinalizedCheckpointTracker
-    uint256 public override highestFinalizedTimestamp;
+    uint256 public highestFinalizedEpoch;
+
+    uint256 public highestFinalizedTimestamp;
 
     /**
      * @notice Initializes the contract with the Beacon Roots contract address.
      * @param beaconRootsAddress_ The address of the Beacon Roots contract.
+     * @param expectedLeafIndex_ The leaf index we expect the proof value, i.e. epoch to be at
+     * this value cannot be left to the user as otherwise someone may prove inclusion of a different leaf
+     * resulting in an invalid epoch value
      */
-    constructor(address beaconRootsAddress_) {
+    constructor(address beaconRootsAddress_, uint256 expectedLeafIndex_) {
         beaconRootsAddress = beaconRootsAddress_;
+        expectedLeafIndex = expectedLeafIndex_;
     }
 
     /**
@@ -35,6 +38,7 @@ contract FinalizedCheckpointTracker is MerkleProofVerifier, IFinalizedCheckpoint
      */
     function proveCheckpointFinalized(uint256 timestamp, ProofInputs calldata proof) external override {
         require(timestamp > highestFinalizedTimestamp, AlreadyFinalized());
+        require(proof.index == expectedLeafIndex, InvalidProof());
 
         uint256 epoch = proof.value.fromLittleEndian();
         require(epoch > highestFinalizedEpoch, AlreadyFinalized());
