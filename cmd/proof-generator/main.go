@@ -23,6 +23,7 @@ func main() {
 	checkpointTrackerAddress := flag.String("checkpoint-tracker-address", "", "Checkpoint tracker contract address (required)")
 	slot := flag.Uint64("slot", 230, "Beacon block slot to prove finalized")
 	privateKey := flag.String("pkey", "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80", "private key to submit proof with")
+	submission := flag.Bool("submit", true, "Enable submission to chain")
 
 	flag.Parse()
 
@@ -61,6 +62,9 @@ func main() {
 	}
 	log.Println("Local proof verification check completed successfully")
 
+	if !*submission {
+		return
+	}
 	// Submit Proof to smart contract
 	log.Println("Submitting proof to smart contract")
 

@@ -44,6 +44,7 @@ contract FinalizedCheckpointTracker is MerkleProofVerifier, IFinalizedCheckpoint
 
         bytes32 beaconRoot = abi.decode(data, (bytes32));
 
+        // TODO: Recursively prove upwards to avoid security bug
         verifyProof(MerkleRoot.wrap(beaconRoot), proof);
 
         highestFinalizedEpoch = epoch;
