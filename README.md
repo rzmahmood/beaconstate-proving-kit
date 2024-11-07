@@ -74,6 +74,7 @@ You can try running the same command again but it will fail since the epoch for 
 ## Future Work and Limitations
 - WARNING: This will only work on Deneb blocks.
 - Key functionality has been tested, but not all cases I would like.
+- The leaf index is hardcoded and deep. Ideally we can use smaller leaf indexes based on each sub-container which is more future-proof
 - This project does not consider forward compatability of Proof verification smart contracts, i.e. [EIP7688](https://ethereum-magicians.org/t/eip-7688-forward-compatible-consensus-data-structures/19673/7)
 - This project is currently limited in that proving an epoch was finalized isn't particularly useful without also correlating it to a block number which is possible
 - This project is not flexible to proving other parts of the BeaconState. However, it could be forked to do so with ease. Perhaps I will do this as a future project
